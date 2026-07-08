@@ -15,7 +15,7 @@ export default function Ember({
       className={`pointer-events-none absolute rounded-full ${animation} ${className}`}
       style={{
         background:
-          "radial-gradient(circle at 50% 40%, rgba(186,84,52,.26) 0%, rgba(226,141,96,.15) 45%, rgba(244,234,221,0) 72%)",
+          "radial-gradient(circle at 50% 40%, rgba(156,63,33,.45) 0%, rgba(226,141,96,.25) 45%, rgba(244,234,221,0) 72%)",
       }}
     />
   );
