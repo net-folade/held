@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Held
 
-## Getting Started
+For women living with PMS and PMDD. Anonymous encouragement notes on a public
+wall, held in moderation until approved. No subscriptions, no passwords —
+Supabase magic-link auth.
 
-First, run the development server:
+Next.js (App Router, TypeScript) + Tailwind + Supabase.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Routes
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+| Route        | What it is                                                         |
+| ------------ | ------------------------------------------------------------------ |
+| `/`          | Landing (static)                                                   |
+| `/begin`     | Onboarding + magic-link email sign-in                              |
+| `/today`     | Daily-letter dashboard (decorative, no persistence)                |
+| `/journal`   | Journal prompt (decorative, no persistence)                        |
+| `/wall`      | Real — reads approved posts from Supabase; signed-in users submit, posts land as `pending` |
+| `/resources` | Crisis lines + article list (static)                               |
+| `/mod`       | Admin-only moderation queue — approve / reject pending posts       |
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Create a project at [supabase.com](https://supabase.com).
+2. Open the SQL editor and run `supabase/schema.sql` — **first edit the two
+   admin email lists** in the RLS policies near the bottom. The file also
+   seeds nine pre-approved notes so the wall isn't empty; delete that block
+   if you don't want them.
+3. Copy `.env.example` to `.env.local` and fill in your project URL, anon
+   key, and the same admin emails (`ADMIN_EMAILS`, comma-separated).
+4. In Supabase → Authentication → URL Configuration, set the Site URL to
+   `http://localhost:3000` (add your production URL later).
+5. `npm install && npm run dev`
 
-## Learn More
+Sign-in is magic-link only (`/begin`, last step). The link lands on
+`/auth/callback`, which exchanges the code for a session.
 
-To learn more about Next.js, take a look at the following resources:
+## Moderation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`/mod` is gated twice: the page and its server actions check the signed-in
+email against `ADMIN_EMAILS`, and Postgres RLS independently only lets
+allowlisted emails read pending posts or change `status`. Rejected posts keep
+their row with `status = 'rejected'` (nothing is deleted).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Out of scope for now
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Journal/mood persistence, email digest, French translations, real article
+content.

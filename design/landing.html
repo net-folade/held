@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,400;0,7..72,500;1,7..72,300;1,7..72,400&family=Albert+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4EADD;font-family:'Albert Sans',sans-serif;color:#32211A}
+a{color:#B4502F}a:hover{color:#8F3C20}
+@keyframes breathe{0%,100%{transform:scale(1) translate(0,0);opacity:.7}50%{transform:scale(1.13) translate(2%,-3%);opacity:1}}
+@keyframes fadeup{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+::selection{background:#E28D60;color:#32211A}
+textarea{outline:none}textarea:focus{border-color:#B4502F !important}
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column;background:#F4EADD">
+
+<!-- ================= LANDING ================= -->
+<sc-if value="{{ onLanding }}" hint-placeholder-val="{{ true }}">
+<div data-screen-label="Landing" style="flex:1;display:flex;flex-direction:column;animation:fadeup .5s ease both">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 44px;border-bottom:1px solid #E4D3BE">
+    <div style="font-family:'Literata',serif;font-size:18px;font-weight:500;letter-spacing:.02em;color:#32211A">[BRAND NAME]</div>
+    <div style="display:flex;align-items:center;gap:24px;font-size:12.5px;color:#6D5240">
+      <a href="#" onClick="{{ goResources }}" style="color:#6D5240;text-decoration:none" style-hover="color:#B4502F">Resources</a>
+      <span style="display:flex;border:1px solid #D9C3AC;border-radius:99px;overflow:hidden;font-size:11px">
+        <span style="padding:4px 11px;background:#32211A;color:#F7EFE3;font-weight:600">EN</span>
+        <span style="padding:4px 11px;color:#8A6B50;cursor:pointer" style-hover="color:#B4502F">FR</span>
+      </span>
+    </div>
+  </div>
+  <div style="position:relative;padding:84px 44px 68px;overflow:hidden">
+    <div style="position:absolute;bottom:-200px;right:-100px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle at 50% 40%, rgba(186,84,52,.26) 0%, rgba(226,141,96,.15) 45%, rgba(244,234,221,0) 72%);animation:breathe 13s ease-in-out infinite"></div>
+    <h1 style="position:relative;font-family:'Literata',serif;font-weight:300;font-size:60px;line-height:1.06;color:#32211A;margin:0 0 24px;max-width:680px;letter-spacing:-.01em;text-wrap:pretty">Ten days a month, the world gets heavier.<br><span style="color:#B4502F">We built this for those days.</span></h1>
+    <p style="position:relative;font-size:15px;line-height:1.65;color:#6D5240;margin:0 0 34px;max-width:440px">For women in Ottawa living with PMS and PMDD. Not a tracker. Not a diagnosis. A steady voice that shows up.</p>
+    <div style="position:relative;display:flex;gap:16px;align-items:center">
+      <button onClick="{{ goOnboarding }}" style="background:#B4502F;color:#F7EFE3;border:none;cursor:pointer;font-family:'Albert Sans',sans-serif;font-size:14px;font-weight:600;padding:15px 30px;border-radius:8px;transition:background .25s" style-hover="background:#9C3F21">Begin — it takes one minute</button>
+      <span style="font-size:12.5px;color:#8A6B50">Free · Anonymous</span>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid #E4D3BE">
+    <div style="padding:30px 34px 36px;border-right:1px solid #E4D3BE">
+      <div style="font-family:'Literata',serif;font-size:34px;font-weight:300;color:#B4502F;margin-bottom:12px">01</div>
+      <div style="font-family:'Literata',serif;font-size:17px;color:#32211A;margin-bottom:7px">One message a day</div>
+      <div style="font-size:12.5px;line-height:1.6;color:#7C614A">Written like a letter, not a notification.</div>
+    </div>
+    <div style="padding:30px 34px 36px;border-right:1px solid #E4D3BE">
+      <div style="font-family:'Literata',serif;font-size:34px;font-weight:300;color:#B4502F;margin-bottom:12px">02</div>
+      <div style="font-family:'Literata',serif;font-size:17px;color:#32211A;margin-bottom:7px">Words from other women</div>
+      <div style="font-size:12.5px;line-height:1.6;color:#7C614A">An anonymous wall of encouragement.</div>
+    </div>
+    <div style="padding:30px 34px 36px">
+      <div style="font-family:'Literata',serif;font-size:34px;font-weight:300;color:#B4502F;margin-bottom:12px">03</div>
+      <div style="font-family:'Literata',serif;font-size:17px;color:#32211A;margin-bottom:7px">Somewhere to put it down</div>
+      <div style="font-size:12.5px;line-height:1.6;color:#7C614A">A journal with one honest prompt.</div>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<!-- ================= ONBOARDING ================= -->
+<sc-if value="{{ onOnboarding }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="Onboarding" style="flex:1;display:flex;flex-direction:column;animation:fadeup .5s ease both">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 44px">
+    <div style="font-family:'Literata',serif;font-size:16px;font-weight:500;color:#32211A">[BRAND NAME]</div>
+    <button onClick="{{ goDashboard }}" style="background:none;border:none;cursor:pointer;font-family:'Albert Sans',sans-serif;font-size:12.5px;color:#8A6B50" style-hover="color:#B4502F">Skip for now</button>
+  </div>
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:40px 44px">
+    <div style="position:absolute;top:-140px;left:-120px;width:440px;height:440px;border-radius:50%;background:radial-gradient(circle at 50% 50%, rgba(226,141,96,.2) 0%, rgba(244,234,221,0) 70%);animation:breathe 12s ease-in-out infinite"></div>
+
+    <sc-if value="{{ onStep1 }}" hint-placeholder-val="{{ true }}">
+    <div style="position:relative;max-width:560px;width:100%">
+      <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B4502F;font-weight:600;margin-bottom:16px">First — no wrong answers</div>
+      <h2 style="font-family:'Literata',serif;font-weight:300;font-size:38px;line-height:1.15;color:#32211A;margin:0 0 28px;text-wrap:pretty">How are you arriving today?</h2>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px">
+        <sc-for list="{{ moods }}" as="mood" hint-placeholder-count="6">
+          <button onClick="{{ mood.pick }}" style="{{ mood.style }}">{{ mood.label }}</button>
+        </sc-for>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px">
+        <button onClick="{{ goStep2 }}" style="background:#B4502F;color:#F7EFE3;border:none;cursor:pointer;font-family:'Albert Sans',sans-serif;font-size:13.5px;font-weight:600;padding:13px 26px;border-radius:8px;transition:background .25s" style-hover="background:#9C3F21">Continue</button>
+        <span style="font-size:12px;color:#8A6B50">You can pick more than one, or none.</span>
+      </div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ onStep2 }}" hint-placeholder-val="{{ false }}">
+    <div style="position:relative;max-width:560px;width:100%">
+      <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B4502F;font-weight:600;margin-bottom:16px">Entirely optional</div>
+      <h2 style="font-family:'Literata',serif;font-weight:300;font-size:38px;line-height:1.15;color:#32211A;margin:0 0 14px;text-wrap:pretty">Want your daily message timed to your month?</h2>
+      <p style="font-size:13.5px;line-height:1.65;color:#6D5240;margin:0 0 28px;max-width:440px">If you share roughly where you are in your cycle, the letter can meet you there. If not, it will still show up every day. Nothing is tracked or shared.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px">
+        <sc-for list="{{ phases }}" as="ph" hint-placeholder-count="4">
+          <button onClick="{{ ph.pick }}" style="{{ ph.style }}">{{ ph.label }}</button>
+        </sc-for>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px">
+        <button onClick="{{ goDashboard }}" style="background:#B4502F;color:#F7EFE3;border:none;cursor:pointer;font-family:'Albert Sans',sans-serif;font-size:13.5px;font-weight:600;padding:13px 26px;border-radius:8px;transition:background .25s" style-hover="background:#9C3F21">That's enough for today</button>
+        <button onClick="{{ goDashboard }}" style="background:none;border:none;cursor:pointer;font-family:'Albert Sans',sans-serif;font-size:12.5px;color:#8A6B50;text-decoration:underline;text-underline-offset:3px" style-hover="color:#B4502F">Rather not say</button>
+      </div>
+    </div>
+    </sc-if>
+  </div>
+</div>
+</sc-if>
+
+<!-- ================= APP SHELL (dashboard / wall / journal / resources) ================= -->
+<sc-if value="{{ inApp }}" hint-placeholder-val="{{ false }}">
+<div style="flex:1;display:flex;flex-direction:column">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 44px;border-bottom:1px solid #E4D3BE">
+    <div onClick="{{ goLanding }}" style="font-family:'Literata',serif;font-size:16px;font-weight:500;color:#32211A;cursor:pointer">[BRAND NAME]</div>
+    <div style="display:flex;align-items:center;gap:6px">
+      <sc-for list="{{ navItems }}" as="nv" hint-placeholder-count="4">
+        <button onClick="{{ nv.go }}" style="{{ nv.style }}">{{ nv.label }}</button>
+      </sc-for>
+      <span style="display:flex;border:1px solid #D9C3AC;border-radius:99px;overflow:hidden;font-size:10.5px;margin-left:14px">
+        <span style="padding:3px 10px;background:#32211A;color:#F7EFE3;font-weight:600">EN</span>
+        <span style="padding:3px 10px;color:#8A6B50;cursor:pointer" style-hover="color:#B4502F">FR</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- ===== DASHBOARD ===== -->
+  <sc-if value="{{ onDashboard }}" hint-placeholder-val="{{ true }}">
+  <div data-screen-label="Dashboard" style="flex:1;position:relative;overflow:hidden;padding:52px 44px 60px;animation:fadeup .5s ease both">
+    <div style="position:absolute;top:-120px;left:-140px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle at 50% 50%, rgba(226,141,96,.18) 0%, rgba(244,234,221,0) 70%);animation:breathe 11s ease-in-out infinite 1s"></div>
+    <div style="position:relative;max-width:840px;margin:0 auto">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:34px">
+        <div style="font-size:14px;color:#8A6B50">{{ greeting }}, {{ userName }}</div>
+        <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#B4502F;font-weight:600">{{ dateLabel }}</div>
+      </div>
+      <div style="border-left:2px solid #B4502F;padding-left:28px;max-width:640px">
+        <div style="font-family:'Literata',serif;font-size:30px;line-height:1.4;font-weight:300;font-style:italic;color:#32211A;text-wrap:pretty">“{{ dailyMessage }}”</div>
+        <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8A6B50;font-weight:500;margin-top:16px">Today's letter</div>
+      </div>
+      <div style="margin-top:40px;display:flex;gap:9px;flex-wrap:wrap;align-items:center">
+        <span style="font-size:13px;color:#8A6B50;margin-right:8px">Right now I feel</span>
+        <sc-for list="{{ moods }}" as="mood" hint-placeholder-count="6">
+          <button onClick="{{ mood.pick }}" style="{{ mood.style }}">{{ mood.label }}</button>
+        </sc-for>
+      </div>
+      <sc-if value="{{ moodResponse }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-top:16px;font-family:'Literata',serif;font-style:italic;font-size:15px;color:#6D5240;animation:fadeup .4s ease both">{{ moodResponse }}</div>
+      </sc-if>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:#E4D3BE;border:1px solid #E4D3BE;margin-top:40px">
+        <button onClick="{{ goJournal }}" style="background:#F4EADD;padding:24px;border:none;text-align:left;cursor:pointer;transition:background .25s" style-hover="background:#EFE2CF">
+          <div style="font-family:'Literata',serif;font-size:16px;color:#32211A">Journal →</div>
+          <div style="font-family:'Albert Sans',sans-serif;font-size:12px;color:#8A6B50;margin-top:6px">Today's prompt is waiting</div>
+        </button>
+        <button onClick="{{ goWall }}" style="background:#F4EADD;padding:24px;border:none;text-align:left;cursor:pointer;transition:background .25s" style-hover="background:#EFE2CF">
+          <div style="font-family:'Literata',serif;font-size:16px;color:#32211A">The wall →</div>
+          <div style="font-family:'Albert Sans',sans-serif;font-size:12px;color:#8A6B50;margin-top:6px">Read a few notes</div>
+        </button>
+        <button onClick="{{ goResources }}" style="background:#F4EADD;padding:24px;border:none;text-align:left;cursor:pointer;transition:background .25s" style-hover="background:#EFE2CF">
+          <div style="font-family:'Literata',serif;font-size:16px;color:#32211A">Resources →</div>
+          <div style="font-family:'Albert Sans',sans-serif;font-size:12px;color:#8A6B50;margin-top:6px">Ottawa & Ontario</div>
+        </button>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ===== WALL ===== -->
+  <sc-if value="{{ onWall }}" hint-placeholder-val="{{ false }}">
+  <div data-screen-label="Wall" style="flex:1;padding:52px 44px 60px;animation:fadeup .5s ease both">
+    <div style="max-width:960px;margin:0 auto">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:36px">
+        <div>
+          <h2 style="font-family:'Literata',serif;font-weight:300;font-size:40px;line-height:1.1;color:#32211A;margin:0 0 10px">The wall</h2>
+          <div style="font-size:13.5px;color:#6D5240;max-width:420px;line-height:1.6">Anonymous notes from women who have stood where you're standing. Take what you need.</div>
+        </div>
+        <button onClick="{{ toggleComposer }}" style="background:#B4502F;color:#F7EFE3;border:none;cursor:pointer;font-family:'Albert Sans',sans-serif;font-size:13px;font-weight:600;padding:12px 24px;border-radius:8px;transition:background .25s" style-hover="background:#9C3F21">{{ composerCta }}</button>
+      </div>
+      <sc-if value="{{ composerOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="border:1px solid #B4502F;background:#F7EFE3;padding:22px;margin-bottom:28px;animation:fadeup .35s ease both">
+          <div style="font-family:'Literata',serif;font-size:16px;color:#32211A;margin-bottom:12px">What would you tell a woman having your worst day?</div>
+          <textarea value="{{ noteDraft }}" onChange="{{ onNoteInput }}" placeholder="Write it the way you'd want to read it…" style="width:100%;box-sizing:border-box;min-height:80px;background:#F4EADD;border:1px solid #D9C3AC;border-radius:6px;padding:14px;font-family:'Literata',serif;font-size:15px;line-height:1.6;color:#32211A;resize:vertical"></textarea>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px">
+            <span style="font-size:11.5px;color:#8A6B50">Posted anonymously. Always.</span>
+            <button onClick="{{ postNote }}" style="background:#32211A;color:#F7EFE3;border:none;cursor:pointer;font-family:'Albert Sans',sans-serif;font-size:12.5px;font-weight:600;padding:10px 20px;border-radius:8px">Leave it on the wall</button>
+          </div>
+        </div>
+      </sc-if>
+      <div style="columns:3;column-gap:16px">
+        <sc-for list="{{ notes }}" as="note" hint-placeholder-count="9">
+          <div style="break-inside:avoid;margin-bottom:16px;background:#F7EFE3;border:1px solid #E4D3BE;padding:22px 22px 18px;transition:transform .3s ease, box-shadow .3s ease" style-hover="transform:translateY(-2px);box-shadow:0 8px 20px rgba(50,33,26,.08)">
+            <div style="font-family:'Literata',serif;font-size:15.5px;line-height:1.55;color:#32211A;text-wrap:pretty">{{ note.text }}</div>
+            <div style="font-size:11px;color:#B4502F;margin-top:14px">{{ note.from }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ===== JOURNAL ===== -->
+  <sc-if value="{{ onJournal }}" hint-placeholder-val="{{ false }}">
+  <div data-screen-label="Journal" style="flex:1;padding:52px 44px 60px;animation:fadeup .5s ease both">
+    <div style="max-width:960px;margin:0 auto;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start">
+      <div>
+        <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B4502F;font-weight:600;margin-bottom:16px">Tonight's prompt</div>
+        <h2 style="font-family:'Literata',serif;font-weight:300;font-size:34px;line-height:1.25;color:#32211A;margin:0 0 26px;text-wrap:pretty">What's one thing your body did for you today, even while it was struggling?</h2>
+        <textarea value="{{ journalDraft }}" onChange="{{ onJournalInput }}" placeholder="No one reads this but you." style="width:100%;box-sizing:border-box;min-height:220px;background:#F7EFE3;border:1px solid #D9C3AC;border-radius:6px;padding:20px;font-family:'Literata',serif;font-size:16px;line-height:1.7;color:#32211A;resize:vertical"></textarea>
+        <div style="display:flex;align-items:center;gap:16px;margin-top:16px">
+          <button onClick="{{ saveEntry }}" style="background:#B4502F;color:#F7EFE3;border:none;cursor:pointer;font-family:'Albert Sans',sans-serif;font-size:13px;font-weight:600;padding:12px 24px;border-radius:8px;transition:background .25s" style-hover="background:#9C3F21">Put it down</button>
+          <sc-if value="{{ savedFlash }}" hint-placeholder-val="{{ false }}">
+            <span style="font-family:'Literata',serif;font-style:italic;font-size:13.5px;color:#6D5240;animation:fadeup .35s ease both">Kept. You can close the page now.</span>
+          </sc-if>
+        </div>
+      </div>
+      <div style="border-left:1px solid #E4D3BE;padding-left:28px">
+        <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8A6B50;font-weight:600;margin-bottom:18px">Earlier pages</div>
+        <sc-for list="{{ entries }}" as="entry" hint-placeholder-count="3">
+          <div style="margin-bottom:22px;cursor:pointer" style-hover="opacity:.75">
+            <div style="font-size:11px;color:#B4502F;margin-bottom:5px">{{ entry.date }}</div>
+            <div style="font-family:'Literata',serif;font-size:13.5px;line-height:1.5;color:#6D5240;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden">{{ entry.excerpt }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ===== RESOURCES ===== -->
+  <sc-if value="{{ onResources }}" hint-placeholder-val="{{ false }}">
+  <div data-screen-label="Resources" style="flex:1;padding:52px 44px 60px;animation:fadeup .5s ease both">
+    <div style="max-width:840px;margin:0 auto">
+      <h2 style="font-family:'Literata',serif;font-weight:300;font-size:40px;line-height:1.1;color:#32211A;margin:0 0 10px">Resources</h2>
+      <div style="font-size:13.5px;color:#6D5240;margin-bottom:36px">Real help, close to home. The lines at the top are for right now.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:44px">
+        <sc-for list="{{ crisisLines }}" as="line" hint-placeholder-count="4">
+          <div style="background:#F7EFE3;border:1px solid #E4D3BE;border-top:3px solid #B4502F;padding:22px">
+            <div style="font-family:'Literata',serif;font-size:16px;color:#32211A;margin-bottom:4px">{{ line.name }}</div>
+            <div style="font-family:'Literata',serif;font-size:22px;font-weight:400;color:#B4502F;margin-bottom:6px">{{ line.number }}</div>
+            <div style="font-size:12px;line-height:1.55;color:#7C614A">{{ line.desc }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8A6B50;font-weight:600;margin-bottom:6px">For a calmer moment</div>
+      <sc-for list="{{ articles }}" as="art" hint-placeholder-count="4">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:20px 0;border-bottom:1px solid #E4D3BE;cursor:pointer" style-hover="opacity:.75">
+          <div>
+            <div style="font-family:'Literata',serif;font-size:17px;color:#32211A;margin-bottom:4px">{{ art.title }}</div>
+            <div style="font-size:12px;color:#8A6B50">{{ art.meta }}</div>
+          </div>
+          <div style="font-family:'Literata',serif;color:#B4502F;flex:none">→</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+</div>
+</sc-if>
+
+<!-- ================= CRISIS FOOTER (every page) ================= -->
+<div style="padding:18px 44px;border-top:1px solid #E4D3BE;display:flex;justify-content:center">
+  <div style="font-size:12px;color:#8A6B50;text-align:center;line-height:1.7">If tonight is a hard night — <a href="tel:6132383311" style="color:#B4502F;text-decoration:none;font-weight:500;white-space:nowrap" style-hover="text-decoration:underline">Distress Centre Ottawa 613-238-3311</a> &nbsp;·&nbsp; <a href="tel:988" style="color:#B4502F;text-decoration:none;font-weight:500;white-space:nowrap" style-hover="text-decoration:underline">call or text 9-8-8</a></div>
+</div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;userName&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Claire&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Content&quot;}, &quot;dailyMessage&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;You have survived every single one of these weeks so far. Tonight you only need to get through this one.&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Content&quot;}}">
+class Component extends DCLogic {
+  state = {
+    screen: 'landing',       // landing | onboarding | dashboard | wall | journal | resources
+    obStep: 1,
+    pickedMoods: [],
+    pickedPhase: null,
+    composerOpen: false,
+    noteDraft: '',
+    journalDraft: '',
+    savedFlash: false,
+    postedNotes: [],
+  };
+
+  chipStyle(active) {
+    return {
+      fontFamily: "'Albert Sans',sans-serif", fontSize: '12.5px', padding: '9px 17px',
+      borderRadius: '8px', cursor: 'pointer', transition: 'all .25s',
+      border: '1px solid ' + (active ? '#B4502F' : '#D9C3AC'),
+      background: active ? '#B4502F' : 'transparent',
+      color: active ? '#F7EFE3' : '#6D5240',
+    };
+  }
+
+  go(screen) { this.setState({ screen }); window.scrollTo(0, 0); }
+
+  renderVals() {
+    const s = this.state;
+    const screen = s.screen;
+    const moodLabels = ['tender', 'foggy', 'angry at nothing', 'heavy', 'anxious', 'alright, actually'];
+    const moodReplies = {
+      'tender': "Then today asks for softness, not performance.",
+      'foggy': "Fog is weather, not a forecast. It moves through.",
+      'angry at nothing': "It isn't nothing. Your body is doing extra work.",
+      'heavy': "You don't have to carry it gracefully. Just carry it.",
+      'anxious': "One breath at a time counts as progress today.",
+      'alright, actually': "Good. Bank a little of it for the harder days.",
+    };
+    const lastPicked = s.pickedMoods[s.pickedMoods.length - 1];
+
+    const hour = new Date().getHours();
+    const greeting = hour < 12 ? 'Morning' : hour < 18 ? 'Afternoon' : 'Evening';
+    const dateLabel = new Date().toLocaleDateString('en-CA', { month: 'long', day: 'numeric' });
+
+    const baseNotes = [
+      { text: "The version of you that shows up on day 26 with unwashed hair and no patience is still worthy of every good thing.", from: '— someone on day 3, feeling human again' },
+      { text: "I used to apologize for a week every month. I stopped. The people who love you can hold a hard week.", from: '— eleven years in' },
+      { text: "It came back, and I survived it again. That's 140-something times now. You have a perfect record too.", from: '— counting since 2014' },
+      { text: "Cancel the thing. The thing will still exist next week. You are allowed to be a person with limits.", from: '— serial canceller, still loved' },
+      { text: "Rage-cleaning the kitchen at 1am is a valid coping mechanism and my counters have never looked better.", from: '— day 24, probably' },
+      { text: "You are not a before-and-after. The luteal you and the follicular you are the same good woman.", from: '— learning this slowly' },
+      { text: "My doctor believed me on the third try. Keep saying it. You're not dramatic, you're accurate.", from: '— finally diagnosed at 34' },
+      { text: "Some months the win is just: I didn't believe everything my brain said about me.", from: '— a quiet win this week' },
+      { text: "Heat pack, dark room, one episode of something you've seen ten times. Ambition can wait until Thursday.", from: '— from my couch to yours' },
+    ];
+
+    return {
+      // routing
+      onLanding: screen === 'landing',
+      onOnboarding: screen === 'onboarding',
+      inApp: ['dashboard', 'wall', 'journal', 'resources'].includes(screen),
+      onDashboard: screen === 'dashboard',
+      onWall: screen === 'wall',
+      onJournal: screen === 'journal',
+      onResources: screen === 'resources',
+      onStep1: s.obStep === 1,
+      onStep2: s.obStep === 2,
+      goLanding: () => this.go('landing'),
+      goOnboarding: () => this.setState({ screen: 'onboarding', obStep: 1 }),
+      goStep2: () => this.setState({ obStep: 2 }),
+      goDashboard: () => this.go('dashboard'),
+      goWall: () => this.go('wall'),
+      goJournal: () => this.go('journal'),
+      goResources: (e) => { if (e && e.preventDefault) e.preventDefault(); this.go('resources'); },
+
+      navItems: [
+        { label: 'Today', key: 'dashboard' }, { label: 'Journal', key: 'journal' },
+        { label: 'The wall', key: 'wall' }, { label: 'Resources', key: 'resources' },
+      ].map(n => ({
+        label: n.label,
+        go: () => this.go(n.key),
+        style: {
+          fontFamily: "'Albert Sans',sans-serif", fontSize: '12.5px', padding: '7px 14px',
+          border: 'none', borderRadius: '8px', cursor: 'pointer', transition: 'all .2s',
+          background: screen === n.key ? '#EBDEC9' : 'transparent',
+          color: screen === n.key ? '#32211A' : '#6D5240',
+          fontWeight: screen === n.key ? 600 : 400,
+        },
+      })),
+
+      // moods
+      moods: moodLabels.map(label => ({
+        label,
+        pick: () => {
+          const has = s.pickedMoods.includes(label);
+          this.setState({ pickedMoods: has ? s.pickedMoods.filter(m => m !== label) : [...s.pickedMoods, label] });
+        },
+        style: this.chipStyle(s.pickedMoods.includes(label)),
+      })),
+      moodResponse: lastPicked ? moodReplies[lastPicked] : null,
+
+      // onboarding phases
+      phases: ['Just started my period', 'Somewhere in the middle', 'The week or two before', 'Honestly, no idea'].map(label => ({
+        label,
+        pick: () => this.setState({ pickedPhase: label }),
+        style: this.chipStyle(s.pickedPhase === label),
+      })),
+
+      // dashboard
+      greeting, dateLabel,
+      userName: this.props.userName ?? 'Claire',
+      dailyMessage: this.props.dailyMessage ?? "You have survived every single one of these weeks so far. Tonight you only need to get through this one.",
+
+      // wall
+      composerOpen: s.composerOpen,
+      composerCta: s.composerOpen ? 'Maybe later' : 'Leave a note',
+      toggleComposer: () => this.setState({ composerOpen: !s.composerOpen }),
+      noteDraft: s.noteDraft,
+      onNoteInput: (e) => this.setState({ noteDraft: e.target.value }),
+      postNote: () => {
+        if (!s.noteDraft.trim()) return;
+        this.setState({
+          postedNotes: [{ text: s.noteDraft.trim(), from: '— you, just now' }, ...s.postedNotes],
+          noteDraft: '', composerOpen: false,
+        });
+      },
+      notes: [...s.postedNotes, ...baseNotes],
+
+      // journal
+      journalDraft: s.journalDraft,
+      onJournalInput: (e) => this.setState({ journalDraft: e.target.value, savedFlash: false }),
+      saveEntry: () => { if (s.journalDraft.trim()) this.setState({ savedFlash: true }); },
+      savedFlash: s.savedFlash,
+      entries: [
+        { date: 'July 5', excerpt: "Slept nine hours and still woke up tired. But I made the call I'd been putting off, so that's the whole list done as far as I'm concerned." },
+        { date: 'July 2', excerpt: "Snapped at M. over the dishwasher again. Apologized. He said he's learning the calendar too. That undid me a little, in a good way." },
+        { date: 'June 28', excerpt: "First day I felt like myself in a while. Went to the market, bought too many peaches. No regrets about the peaches." },
+      ],
+
+      // resources
+      crisisLines: [
+        { name: 'Distress Centre Ottawa', number: '613-238-3311', desc: '24/7 phone support for anyone in the Ottawa region. No situation is too small.' },
+        { name: 'Suicide Crisis Helpline', number: '9-8-8', desc: 'Call or text, any hour, anywhere in Canada. English and French.' },
+        { name: 'Ontario Mental Health Line', number: '1-866-531-2600', desc: 'ConnexOntario — free, confidential referrals to local mental health services.' },
+        { name: "Women's Health Navigation", number: '613-724-4004', desc: 'Placeholder — Ottawa-area line for finding PMDD-informed care providers.' },
+      ],
+      articles: [
+        { title: 'PMDD is real, and it has a name', meta: '6 min read · What a diagnosis does and doesn\u2019t mean' },
+        { title: 'Scripts for telling your doctor', meta: '4 min read · Getting believed on the first try' },
+        { title: 'The luteal survival kit', meta: '5 min read · Small preparations for the hard week' },
+        { title: 'For partners and friends', meta: '7 min read · How to show up without fixing' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
