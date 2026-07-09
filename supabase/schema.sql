@@ -23,28 +23,23 @@ on public.posts for insert
 to authenticated
 with check (user_id = auth.uid() and status = 'pending');
 
--- ============================================================
--- EDIT THE EMAIL LIST in the two policies below before running.
--- It must match ADMIN_EMAILS in your .env.local.
--- ============================================================
-
 -- Moderators can see everything, including pending notes.
 create policy "admins read all"
 on public.posts for select
 to authenticated
-using (auth.jwt() ->> 'email' in ('you@example.com'));
+using (auth.jwt() ->> 'email' in (''));
 
 -- Moderators can approve or reject.
 create policy "admins update status"
 on public.posts for update
 to authenticated
-using (auth.jwt() ->> 'email' in ('you@example.com'))
+using (auth.jwt() ->> 'email' in (''))
 with check (status in ('approved', 'rejected'));
 
--- ------------------------------------------------------------
+
 -- Optional seed: the notes from the design prototype, pre-approved,
--- so the wall isn't empty on first run. Safe to skip or delete later.
--- ------------------------------------------------------------
+-- so the wall isn't empty on first run.
+
 insert into public.posts (content, signature, status) values
   ('The version of you that shows up on day 26 with unwashed hair and no patience is still worthy of every good thing.', 'someone on day 3, feeling human again', 'approved'),
   ('I used to apologize for a week every month. I stopped. The people who love you can hold a hard week.', 'eleven years in', 'approved'),

@@ -35,6 +35,10 @@ const config: Config = {
           from: { opacity: "0", transform: "translateY(10px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
+        foglift: {
+          from: { opacity: "0", filter: "blur(3px)" },
+          to: { opacity: "1", filter: "blur(0)" },
+        },
       },
       animation: {
         // One radial gradient per page, breathing at the pace of slow breath.
@@ -43,6 +47,7 @@ const config: Config = {
         "breathe-late": "breathe 11s ease-in-out infinite 1s",
         fadeup: "fadeup 0.5s ease both",
         "fadeup-fast": "fadeup 0.35s ease both",
+        foglift: "foglift 0.55s ease-out both",
       },
     },
   },

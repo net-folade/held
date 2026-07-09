@@ -34,7 +34,7 @@ const doors = [
 ];
 
 export default function TodayPage() {
-  const [picked, setPicked] = useState<string[]>([]);
+  const [picked, setPicked] = useState<string | null>(null);
   const [now, setNow] = useState<{ greeting: string; date: string } | null>(
     null,
   );
@@ -49,8 +49,6 @@ export default function TodayPage() {
       }),
     });
   }, []);
-
-  const lastPicked = picked[picked.length - 1];
 
   return (
     <div className="flex flex-1 flex-col">
@@ -83,20 +81,19 @@ export default function TodayPage() {
               <Chip
                 key={mood}
                 label={mood}
-                active={picked.includes(mood)}
+                active={picked === mood}
                 onClick={() =>
-                  setPicked((prev) =>
-                    prev.includes(mood)
-                      ? prev.filter((m) => m !== mood)
-                      : [...prev, mood],
-                  )
+                  setPicked((prev) => (prev === mood ? null : mood))
                 }
               />
             ))}
           </div>
-          {lastPicked && (
-            <p className="m-0 mt-4 animate-fadeup-fast font-serif text-[15px] italic text-bark">
-              {moodReplies[lastPicked]}
+          {picked && (
+            <p
+              key={picked}
+              className="m-0 mt-4 animate-foglift font-serif text-[15px] italic text-bark motion-reduce:animate-none"
+            >
+              {moodReplies[picked]}
             </p>
           )}
 
