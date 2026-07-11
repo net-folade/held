@@ -1,5 +1,7 @@
+import Link from "next/link";
 import AppHeader from "@/components/AppHeader";
 import BackLink from "@/components/BackLink";
+import { articles } from "@/lib/articles";
 
 const crisisLines = [
   {
@@ -25,25 +27,6 @@ const crisisLines = [
     number: "8-1-1",
     tel: "811",
     desc: "Talk to a registered nurse 24/7 and get help finding local care. English and French.",
-  },
-];
-
-const articles = [
-  {
-    title: "PMDD is real, and it has a name",
-    meta: "6 min read · What a diagnosis does and doesn’t mean",
-  },
-  {
-    title: "Scripts for telling your doctor",
-    meta: "4 min read · Getting believed on the first try",
-  },
-  {
-    title: "The luteal survival kit",
-    meta: "5 min read · Small preparations for the hard week",
-  },
-  {
-    title: "For partners and friends",
-    meta: "7 min read · How to show up without fixing",
   },
 ];
 
@@ -87,18 +70,21 @@ export default function ResourcesPage() {
             For a calmer moment
           </div>
           {articles.map((art) => (
-            <div
-              key={art.title}
-              className="flex items-baseline justify-between gap-6 border-b border-sand py-5"
+            <Link
+              key={art.slug}
+              href={`/resources/${art.slug}`}
+              className="group flex items-baseline justify-between gap-6 border-b border-sand py-5 no-underline"
             >
               <div>
-                <div className="mb-1 font-serif text-[17px] text-espresso">
+                <div className="mb-1 font-serif text-[17px] text-espresso group-hover:text-ember">
                   {art.title}
                 </div>
-                <div className="text-xs text-fawn">{art.meta}</div>
+                <div className="text-xs text-fawn">
+                  {art.minutes} min read · {art.subtitle}
+                </div>
               </div>
               <div className="flex-none font-serif text-ember">→</div>
-            </div>
+            </Link>
           ))}
         </div>
       </main>
