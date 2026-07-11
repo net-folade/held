@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import AppHeader from "@/components/AppHeader";
+import BackLink from "@/components/BackLink";
 
 const earlierPages = [
   {
@@ -29,7 +30,9 @@ export default function JournalPage() {
     <div className="flex flex-1 flex-col">
       <AppHeader />
       <main className="flex-1 animate-fadeup px-6 pb-[60px] pt-[52px] sm:px-11">
-        <div className="mx-auto grid max-w-[960px] items-start gap-12 lg:grid-cols-[1fr_280px]">
+        <div className="mx-auto max-w-[960px]">
+          <BackLink className="mb-6" />
+          <div className="grid items-start gap-12 lg:grid-cols-[1fr_280px]">
           <div>
             <div className="mb-4 text-[11px] font-semibold uppercase tracking-[.14em] text-ember">
               Tonight&rsquo;s prompt
@@ -80,6 +83,7 @@ export default function JournalPage() {
               </div>
             ))}
           </aside>
+          </div>
         </div>
       </main>
     </div>

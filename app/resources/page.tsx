@@ -1,4 +1,5 @@
 import AppHeader from "@/components/AppHeader";
+import BackLink from "@/components/BackLink";
 
 const crisisLines = [
   {
@@ -52,6 +53,7 @@ export default function ResourcesPage() {
       <AppHeader />
       <main className="flex-1 animate-fadeup px-6 pb-[60px] pt-[52px] sm:px-11">
         <div className="mx-auto max-w-[840px]">
+          <BackLink className="mb-6" />
           <h2 className="m-0 mb-2.5 font-serif text-[32px] font-light leading-[1.1] text-espresso sm:text-[40px]">
             Resources
           </h2>

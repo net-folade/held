@@ -1,4 +1,5 @@
 import AppHeader from "@/components/AppHeader";
+import BackLink from "@/components/BackLink";
 import Composer from "./Composer";
 import { createClient } from "@/lib/supabase/server";
 
@@ -28,6 +29,7 @@ export default async function WallPage() {
       <AppHeader />
       <main className="flex-1 animate-fadeup px-6 pb-[60px] pt-[52px] sm:px-11">
         <div className="mx-auto max-w-[960px]">
+          <BackLink className="mb-6" />
           <div className="mb-9 flex flex-wrap items-end justify-between gap-4">
             <div>
               <h2 className="m-0 mb-2.5 font-serif text-[32px] font-light leading-[1.1] text-espresso sm:text-[40px]">
