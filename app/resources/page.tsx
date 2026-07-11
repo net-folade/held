@@ -21,10 +21,10 @@ const crisisLines = [
     desc: "ConnexOntario — free, confidential referrals to local mental health services.",
   },
   {
-    name: "Women's Health Navigation",
-    number: "613-724-4004",
-    tel: "6137244004",
-    desc: "Ottawa-area line for finding PMDD-informed care providers.",
+    name: "Health811 Ontario",
+    number: "8-1-1",
+    tel: "811",
+    desc: "Talk to a registered nurse 24/7 and get help finding local care. English and French.",
   },
 ];
 
