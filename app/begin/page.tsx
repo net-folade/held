@@ -72,7 +72,7 @@ function BeginFlow() {
         </Link>
         <Link
           href="/today"
-          className="text-[12.5px] text-fawn no-underline hover:text-ember"
+          className="text-[12.5px] text-bark no-underline hover:text-ember"
         >
           Skip for now
         </Link>
@@ -102,13 +102,14 @@ function BeginFlow() {
             <div className="flex items-center gap-4">
               <button
                 type="button"
+                disabled={pickedMoods.length === 0}
                 onClick={() => setStep(2)}
-                className="cursor-pointer rounded-lg bg-ember px-[26px] py-[13px] text-[13.5px] font-semibold text-paper transition-colors hover:bg-ember-deep"
+                className="cursor-pointer rounded-lg bg-ember px-[26px] py-[13px] text-[13.5px] font-semibold text-paper transition-colors hover:bg-ember-deep disabled:opacity-60"
               >
                 Continue
               </button>
               <span className="text-xs text-fawn">
-                You can pick more than one, or none.
+                Pick at least one — more than one is fine.
               </span>
             </div>
           </div>
@@ -116,16 +117,22 @@ function BeginFlow() {
 
         {step === 2 && (
           <div className="relative w-full max-w-[560px]">
+            <button
+              type="button"
+              onClick={() => setStep(1)}
+              className="mb-5 block cursor-pointer text-[12.5px] text-fawn transition-colors hover:text-ember"
+            >
+              ← Back
+            </button>
             <div className="mb-4 text-[11px] font-semibold uppercase tracking-[.14em] text-ember">
               Entirely optional
             </div>
             <h2 className="m-0 mb-3.5 font-serif text-3xl font-light leading-[1.15] text-espresso sm:text-[38px]">
-              Want your daily message timed to your month?
+              Where are you in your month right now?
             </h2>
             <p className="m-0 mb-7 max-w-[440px] text-[13.5px] leading-[1.65] text-bark">
-              If you share roughly where you are in your cycle, the letter can
-              meet you there. If not, it will still show up every day. Nothing
-              is tracked or shared.
+              Naming where you are can help, it&rsquo;s never
+              tracked or shared.
             </p>
             <div className="mb-9 flex flex-wrap gap-2.5">
               {phases.map((phase) => (
@@ -158,6 +165,15 @@ function BeginFlow() {
 
         {step === 3 && (
           <div className="relative w-full max-w-[560px]">
+            {!sent && (
+              <button
+                type="button"
+                onClick={() => setStep(2)}
+                className="mb-5 block cursor-pointer text-[12.5px] text-fawn transition-colors hover:text-ember"
+              >
+                ← Back
+              </button>
+            )}
             <div className="mb-4 text-[11px] font-semibold uppercase tracking-[.14em] text-ember">
               Last thing — no password, ever
             </div>
